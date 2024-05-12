@@ -25,6 +25,11 @@ public class EmployeeImpl implements EmployeeService {
 
     @Override
     public String addEmployee(EmployeeDto employeeDTO) {
+        EmployeeEntity existingEmployee = employeeRepo.findByEmail(employeeDTO.getEmail());
+        if(existingEmployee!=null)
+        {
+            throw new RuntimeException("Email already exists");
+        }else {
         EmployeeEntity employee = new EmployeeEntity(
 
         employeeDTO.getEmployeeid(),
@@ -34,7 +39,7 @@ public class EmployeeImpl implements EmployeeService {
         );
         employeeRepo.save(employee);
         return employee.getEmployeename();
-    }
+    }}
 
     @Override
     public LoginResponse loginEmployee(LoginDTO loginDTO) {
