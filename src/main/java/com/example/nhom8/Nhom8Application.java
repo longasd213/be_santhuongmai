@@ -10,6 +10,4 @@ public class Nhom8Application {
     public static void main(String[] args) {
         SpringApplication.run(Nhom8Application.class, args);
     }
-
-
 }
